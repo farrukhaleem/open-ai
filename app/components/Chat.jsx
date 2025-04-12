@@ -58,10 +58,10 @@ const Chat = () => {
 
   return (
     <div className="max-w-lg">
-      <div className="flex mx-auto w-full">
+      <div className="sm:flex block mx-auto w-full">
         <div className="w-full">
           <input
-            className="pl-5 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+            className="mb-2 pl-5 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
@@ -70,7 +70,7 @@ const Chat = () => {
           />
         </div>
         <input
-          className="cursor-pointer ml-2 text-white bg-blue-700 border border-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-10 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 min-w-40 max-w-40"
+          className="cursor-pointer w-full sm:ml-2 text-white bg-blue-700 border border-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-10 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 min-w-40 sm:max-w-40"
           type="button"
           value={loading ? "Asking.." : "Ask"}
           onClick={fetchChat}
