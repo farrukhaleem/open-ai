@@ -1,11 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 const Chat = () => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [conversationId, setConversationId] = useState(false);
+  
+  useEffect(() => {
+
+    const storedValue = localStorage.getItem('conversationId');
+    
+    if(storedValue && storedValue !== '') {
+      setConversationId(storedValue);
+      console.log('found conversationId', conversationId);
+    } else {
+      id = uuidv4();
+      setConversationId(id);
+      localStorage.setItem("conversationId", id); 
+      console.log('created new conversationId', id);
+    }
+
+  }, []);
+
+     
+    
 
   const fetchChat = async () => {
     if (!userInput.trim()) return;
@@ -15,7 +36,7 @@ const Chat = () => {
 
     const requestOptions = {
       method: "POST",
-      body: JSON.stringify({ userInput }),
+      body: JSON.stringify({ userInput, conversationId }),
     };
 
     const response = await fetch("/api/chat", requestOptions);

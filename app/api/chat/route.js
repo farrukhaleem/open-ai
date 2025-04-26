@@ -2,7 +2,7 @@
 export async function POST(req) {
    try {
      const body = await req.json();
-     const { userInput } = body;
+     const { userInput, conversationId } = body;
  
      const headers = {
        "Api-Key": process.env.TINYTALK_API_KEY, // secure key (not NEXT_PUBLIC)
@@ -13,7 +13,8 @@ export async function POST(req) {
      const payload = JSON.stringify({
        botId: "66eef580-49f7-4286-957b-e55a8c1e9c5b",
        messages: [{ role: "user", content: userInput }],
-       temperature: 0.1
+       temperature: 0.1,
+       conversationId: conversationId,
      });
  
      const response = await fetch("https://api.tinytalk.ai/v1/chat/completions", {
