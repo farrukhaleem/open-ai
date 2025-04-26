@@ -17,7 +17,7 @@ const Chat = () => {
       setConversationId(storedValue);
       console.log('found conversationId', conversationId);
     } else {
-      id = uuidv4();
+      let id = uuidv4();
       setConversationId(id);
       localStorage.setItem("conversationId", id); 
       console.log('created new conversationId', id);
