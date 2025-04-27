@@ -30,10 +30,11 @@ const Footer = () => {
         </div>
         <div className="footer-links">
           
-          <Link href="/">Chat</Link>
+          <Link href="/">Home</Link>
           <span style={{ margin: '0 10px', borderLeft: '2px solid #fff', height: '12px', display: 'inline-block' }}></span>
-          
           <Link href="/about-us">About Us</Link>
+          <span style={{ margin: '0 10px', borderLeft: '2px solid #fff', height: '12px', display: 'inline-block' }}></span>
+          <Link href="/terms-and-conditions">Terms and Conditions</Link>
           <span style={{ margin: '0 10px', borderLeft: '2px solid #fff', height: '12px', display: 'inline-block' }}></span>
           <Link href="/privacy-policy">Privacy Policy</Link>
         </div>

@@ -1,15 +1,14 @@
 import Head from 'next/head';
-import PageWrapper from './../components/PageWrapper';
 
 export default function TermsAndConditions() {
   return (
-    <PageWrapper>
+    <>
       <Head>
         <title>Terms and Conditions | TalkToKrishna</title>
         <meta name="description" content="Read the Terms and Conditions for using TalkToKrishna." />
       </Head>
 
-      <main className="max-w-3xl mx-auto px-4 py-10 text-gray-200">
+      <main className="py-10 px-5 md:px-20 text-gray-200">
         <h1 className="text-3xl font-bold mb-4 text-white">Terms and Conditions</h1>
         <p className="text-sm text-gray-400 mb-8">Last Updated: March 27, 2025</p>
 
@@ -130,7 +129,7 @@ export default function TermsAndConditions() {
           By using TalkToKrishna, you acknowledge that you have read, understood, and agree to these Terms and Conditions.
         </p>
       </main>
-    </PageWrapper>
+    </>
   );
 }
 
