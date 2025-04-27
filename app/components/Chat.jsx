@@ -160,7 +160,7 @@ const Chat = () => {
             <button
               key={index}
               onClick={() => setUserInput(question)}
-              className="text-left default-questions block mt-5 m-auto text-white cursor-pointer  px-5 py-2 rounded-sm"
+              className="text-left default-questions block mt-5 m-auto text-white cursor-pointer px-5 py-2 rounded-sm"
             >
               {question}
             </button>
