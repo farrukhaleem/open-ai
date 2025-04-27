@@ -3,20 +3,42 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import SendIcon from "./icons/SendIcon";
+import axios from "axios";
 
 const Chat = () => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [conversationId, setConversationId] = useState(false);
+  const [conversationId, setConversationId] = useState('');
+  const [contactId, setContactId] = useState('');
+  const [token, setToken] = useState('');
 
   useEffect(() => {
-    const storedValue = localStorage.getItem("conversationId");
 
-    if (storedValue && storedValue !== "") {
+    const storedValue = localStorage.getItem("conversationId");
+    const storedValueContactId = localStorage.getItem("contactId");
+    const storedValueToken = localStorage.getItem("token");
+
+    if ((storedValue && storedValue !== "") && (storedValueContactId && storedValueContactId !== "") && (storedValueToken && storedValueToken !== "")) {
       setConversationId(storedValue);
+      setContactId(storedValueContactId);
+      setToken(storedValueToken);
     } else {
+      
+      axios.post(`${process.env.NEXT_PUBLIC_TINYTALK_PATH}/contact/token/${process.env.NEXT_PUBLIC_TINYTALK_BOT_ID}`)
+      .then((response) => {
+        console.log(response.data.contactId);
+        setContactId(response.data.contactId);
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("contactId", response.data.contactId);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
       let id = uuidv4();
+      
       setConversationId(id);
       localStorage.setItem("conversationId", id);
     }
@@ -30,7 +52,7 @@ const Chat = () => {
 
     const requestOptions = {
       method: "POST",
-      body: JSON.stringify({ userInput, conversationId }),
+      body: JSON.stringify({ userInput, conversationId, contactId, token }),
     };
 
     const response = await fetch("/api/chat", requestOptions);
