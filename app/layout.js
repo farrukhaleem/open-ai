@@ -3,6 +3,8 @@ import Navigation from './components/Navigation';
 import ShareCoffee from './components/ShareCoffee';
 import { Poppins } from 'next/font/google';
 import Footer from "./components/Footer";
+import Script from "next/script";
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -19,10 +21,31 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
+      <head>
+        {/* Google Tag Manager Head */}
+        <Script id="gtm-head" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TLFSC286');
+          `}
+        </Script>
+      </head>
       <body
         style={{ backgroundColor: '#212529', height: '100vh' }}
         className={`${poppins.variable} antialiased`}
       >
+         {/* Google Tag Manager (noscript) */}
+         <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TLFSC286"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <main className="font-sans">
         {children}
         </main>

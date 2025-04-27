@@ -38,6 +38,18 @@ const Footer = () => {
           <span style={{ margin: '0 10px', borderLeft: '2px solid #fff', height: '12px', display: 'inline-block' }}></span>
           <Link href="/privacy-policy">Privacy Policy</Link>
         </div>
+          <p style={{
+            color: '#fff', 
+            fontSize: '14px', 
+            textAlign: 'center', 
+            paddingTop: 10,
+            width: '100%',
+            position: 'relative',
+          }}>
+            © Talk to Krishna 
+            <span style={{ margin: '0 10px', borderLeft: '2px solid #fff', height: '12px', display: 'inline-block' }}></span>
+            All rights reserved.
+          </p>
       </div>
     </div>
   )
