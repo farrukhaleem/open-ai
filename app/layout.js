@@ -1,14 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navigation from './components/Navigation';
+import ShareCoffee from './components/ShareCoffee';
+import { Poppins } from 'next/font/google';
+import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'], // adjust as needed
+  variable: '--font-poppins',
+  display: 'swap',
 });
 
 export const metadata = {
@@ -18,12 +18,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.variable}>
       <body
-        style={{ backgroundColor: '#2a2442', height: '100vh' }}
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ backgroundColor: '#212529', height: '100vh' }}
+        className={`${poppins.variable} antialiased`}
       >
+        <main className="font-sans">
         {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

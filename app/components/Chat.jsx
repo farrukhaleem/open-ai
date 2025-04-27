@@ -1,32 +1,26 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import SendIcon from "./icons/SendIcon";
 
 const Chat = () => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [conversationId, setConversationId] = useState(false);
-  
-  useEffect(() => {
 
-    const storedValue = localStorage.getItem('conversationId');
-    
-    if(storedValue && storedValue !== '') {
+  useEffect(() => {
+    const storedValue = localStorage.getItem("conversationId");
+
+    if (storedValue && storedValue !== "") {
       setConversationId(storedValue);
-      console.log('found conversationId', conversationId);
     } else {
       let id = uuidv4();
       setConversationId(id);
-      localStorage.setItem("conversationId", id); 
-      console.log('created new conversationId', id);
+      localStorage.setItem("conversationId", id);
     }
-
   }, []);
-
-     
-    
 
   const fetchChat = async () => {
     if (!userInput.trim()) return;
@@ -49,7 +43,9 @@ const Chat = () => {
       if (done) break;
 
       const chunk = decoder.decode(value);
-      const lines = chunk.split("\n").filter(line => line.trim().startsWith("data:"));
+      const lines = chunk
+        .split("\n")
+        .filter((line) => line.trim().startsWith("data:"));
 
       for (const line of lines) {
         const cleaned = line.replace("data: ", "").trim();
@@ -65,10 +61,16 @@ const Chat = () => {
       }
     }
 
-    setUserInput('');
+    setUserInput("");
     setMessages([fullMessage]);
     setLoading(false);
   };
+
+  const defaultQuestions = [
+    "How can I find the balance between my own personal happiness and the happiness of others?",
+    "How can I cultivate a sense of detachment from outcomes and results?",
+    "How can I find meaning and purpose in my work?"
+  ];
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -78,40 +80,93 @@ const Chat = () => {
   };
 
   return (
-    <div className="max-w-lg">
-      <div className="sm:flex block mx-auto w-full">
-        <div className="w-full">
-          <input
-            className="mb-2 pl-5 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyDown={handleKeyDown} // 👈 this line added
-            placeholder="Type a message and press Enter"
-          />
+    <div style={{
+      backgroundColor: '#212529',
+      zIndex: 1,
+      position: 'relative'
+    }}>
+      <div className="" style={{ maxWidth: "800px", width: "100%" }}>
+        <div
+          className="sm:flex block mx-auto w-full"
+          style={{ position: "relative" }}
+        >
+          <div className="w-full">
+            <input
+              style={{
+                background: "#333333",
+                border: "none",
+                height: "3rem",
+                color: "white",
+                boxShadow: "none",
+                display: "block",
+                width: "100%",
+                padding: ".375rem .75rem",
+                fontSize: "1rem",
+                fontWeight: 400,
+                lineHeight: 1.5,
+                margin: 0,
+                paddingRight: 36,
+                transition:
+                  "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
+                borderRadius: "0.375rem",
+                outline: "none",
+              }}
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Ask Bhagavad Gita a question..."
+            />
+          </div>
+          <button
+            style={{
+              position: "absolute",
+              color: "#000",
+              right: 10,
+              top: 0,
+              bottom: 0,
+              cursor: "pointer",
+              background: '#333333'
+            }}
+            type="button"
+            onClick={fetchChat}
+          >
+            <SendIcon />
+          </button>
         </div>
-        <input
-          className="cursor-pointer w-full sm:ml-2 text-white bg-blue-700 border border-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-10 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 min-w-40 sm:max-w-40"
-          type="button"
-          value={loading ? "Asking.." : "Ask"}
-          onClick={fetchChat}
-        />
-      </div>
 
-      {messages.length > 0 && (
-        <div className="w-full">
-          <div className="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-xl dark:bg-gray-700">
+        {messages.length > 0 && (
+          <div className="w-full">
             {messages.map((message, index) => (
-              <p
-                className="text-sm font-normal text-gray-900 dark:text-white"
-                key={index}
+              <div
+                style={{
+                  marginTop: 10,
+                  borderRadius: 3,
+                }}
+                className="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 dark:bg-gray-700"
               >
-                {message}
-              </p>
+                <p
+                  className="text-sm font-normal text-gray-900 dark:text-white"
+                  key={index}
+                >
+                  {message}
+                </p>
+              </div>
             ))}
           </div>
+        )}
+        <div className="block text-center mt-5">
+          {defaultQuestions.map((question, index) => (
+            <button
+              key={index}
+              onClick={() => setUserInput(question)}
+              className="text-left default-questions block mt-5 m-auto text-white cursor-pointer  px-5 py-2 rounded-sm"
+            >
+              {question}
+            </button>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };

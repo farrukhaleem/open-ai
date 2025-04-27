@@ -14,9 +14,20 @@ export default function Home() {
       <div className="flex justify-center p-10">
         <main>
           <ImageBox />
-          <div className="p-5 text-center">
-            <h1 className="text-3xl sm:text-6xl font-bold text-blue-200">Ask Krishna</h1>
-            <p className="text-xl font-semibold text-blue-200">Ask Your Problems, Krishna will Answer 🦚</p>
+          <div className="p-5 text-center" style={{
+            backgroundColor: '#212529',
+            zIndex: 1,
+            position: 'relative'
+          }}>
+            <h1 style={{
+              fontSize: '2.5rem',
+              color: '#fff'
+            }}>Ask Krishna</h1>
+            <p style={{
+              fontSize: '1rem',
+              color: '#b38e62',
+              marginTop: '0.5rem'
+            }}>Ask Your Problems, Krishna will Answer 🦚</p>
           </div>
           <Chat />
         </main>

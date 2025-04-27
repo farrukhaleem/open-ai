@@ -5,19 +5,19 @@ export async function POST(req) {
      const { userInput, conversationId } = body;
  
      const headers = {
-       "Api-Key": process.env.TINYTALK_API_KEY, // secure key (not NEXT_PUBLIC)
+       "Api-Key": process.env.TINYTALK_API_KEY,
        "Content-Type": "application/json",
-       "Origin": "https://dashboard.tinytalk.ai"
+       "Origin": process.env.ORIGIN
      };
  
      const payload = JSON.stringify({
-       botId: "66eef580-49f7-4286-957b-e55a8c1e9c5b",
+       botId: process.env.TINYTALK_BOT_ID,
        messages: [{ role: "user", content: userInput }],
        temperature: 0.1,
        conversationId: conversationId,
      });
  
-     const response = await fetch("https://api.tinytalk.ai/v1/chat/completions", {
+     const response = await fetch(process.env.TINYTALK_PATH, {
        method: "POST",
        headers,
        body: payload,
