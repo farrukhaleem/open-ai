@@ -1,11 +1,9 @@
 import React from 'react'
-import Facebook from './icons/Facebook'
-import Instagram from './icons/Instagram'
-import Tiktok from './icons/Tiktok'
-import Twitter from './icons/Twitter'
 import facebook from './../images/facebook.png';
 import instagram from './../images/instagram.png';
 import twitter from './../images/twitter.png';
+import tiktok from './../images/tiktok.png';
+import pinterest from './../images/pinterest.png';
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -14,9 +12,21 @@ const Footer = () => {
     <div>
       <div className="footer">
         <div className="socials">
-          <a href="#"><Image src={twitter} alt="Twitter" width={30} height={30} /></a>
-          <a href="#"><Image src={instagram} alt="Instagram" width={30} height={30} /></a>
-          <a href="#"><Image src={facebook} alt="Facebook" width={30} height={30} /></a>
+          <a href={process.env.TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+            <Image src={twitter} alt="Twitter" width={30} height={30} />
+          </a>
+          <a href={process.env.INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+            <Image src={instagram} alt="Instagram" width={30} height={30} />
+          </a>
+          <a href={process.env.FACEBOOK_LINK} target="_blank" rel="noopener noreferrer">
+            <Image src={facebook} alt="Facebook" width={30} height={30} />
+          </a>
+          <a href={process.env.PINTEREST_LINK} target="_blank" rel="noopener noreferrer">
+            <Image src={pinterest} alt="Pinterest" width={30} height={30} />
+          </a>
+          <a href={process.env.TIKTOK_LINK} target="_blank" rel="noopener noreferrer">
+            <Image src={tiktok} alt="Tiktok" width={30} height={30} />
+          </a>
         </div>
         <div className="footer-links">
           
