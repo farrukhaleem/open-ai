@@ -10,10 +10,10 @@ const ImageBox = () => {
   useEffect(() => {
     const handleScroll = () => {
       
-      setIsScrolled(300 - (window.scrollY * 0.9));
+      setIsScrolled(300 - window.scrollY);
     };
     
-    setIsScrolled(300 - (window.scrollY * 0.9));
+    setIsScrolled(300 - window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
