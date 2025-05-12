@@ -15,9 +15,9 @@ export default function Home() {
         <main>
           <ImageBox />
           <div className="pb-5 text-center" style={{
-            // backgroundColor: '#212529',
-            // zIndex: 1,
-            // position: 'relative'
+            backgroundColor: '#212529',
+            zIndex: 1,
+            position: 'relative'
           }}>
             <h1 style={{
               fontSize: '2.5rem',
