@@ -51,6 +51,7 @@ const Footer = () => {
             All rights reserved.
           </p>
       </div>
+      <div className="name-widget"><a target='_blank' rel="noopener noreferrer nofollow" href="https://surendarkumar.com/" class="w-link w-link-35"><div class="w-made-by"><div class="w-text-1 w-text-131">Made By Kumar <span class="w-text-132">❤️</span></div></div></a></div>
     </div>
   )
 }

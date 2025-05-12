@@ -14,10 +14,10 @@ export default function Home() {
       <div className="flex justify-center p-10">
         <main>
           <ImageBox />
-          <div className="p-5 text-center" style={{
-            backgroundColor: '#212529',
-            zIndex: 1,
-            position: 'relative'
+          <div className="pb-5 text-center" style={{
+            // backgroundColor: '#212529',
+            // zIndex: 1,
+            // position: 'relative'
           }}>
             <h1 style={{
               fontSize: '2.5rem',
